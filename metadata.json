@@ -1,0 +1,6 @@
+{
+  "name": "Gerenciador Financeiro e de Estoque",
+  "description": "Sistema de administração de estoque, importação de NF-e XML, simulador de custos agregados, margens de lucro e relatórios de rentabilidade exportáveis.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

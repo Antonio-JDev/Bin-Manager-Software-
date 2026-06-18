@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "Product": {
+      "title": "Product",
+      "description": "Store item product details with purchase history",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "link": { "type": "string" },
+        "quantity": { "type": "number" },
+        "supplierPrice": { "type": "number" },
+        "supplierName": { "type": "string" },
+        "sellingPrice": { "type": "number" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["code", "name"]
+    },
+    "Sale": {
+      "title": "Sale",
+      "description": "Sales output record for items",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "productId": { "type": "string" },
+        "productName": { "type": "string" },
+        "quantity": { "type": "number" },
+        "unitPrice": { "type": "number" },
+        "totalValue": { "type": "number" },
+        "date": { "type": "string" },
+        "profit": { "type": "number" }
+      },
+      "required": ["productId", "quantity", "unitPrice"]
+    },
+    "Settings": {
+      "title": "Settings",
+      "description": "Aggregate cost factors to define sell price",
+      "type": "object",
+      "properties": {
+        "taxRate": { "type": "number" },
+        "shippingCost": { "type": "number" },
+        "otherFees": { "type": "number" },
+        "platformFeeRate": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "/users/{userId}/products/{productId}": {
+      "schema": "Product",
+      "description": "User-owned products in their inventory"
+    },
+    "/users/{userId}/sales/{saleId}": {
+      "schema": "Sale",
+      "description": "User-owned sale transactions"
+    },
+    "/users/{userId}/settings/costs": {
+      "schema": "Settings",
+      "description": "User-owned pricing configurations"
+    }
+  }
+}

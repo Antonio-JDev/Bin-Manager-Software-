@@ -1,0 +1,231 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-zoomIn: zoomIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fadeIn: fadeIn 0.35s ease-out forwards;
+  --animate-fadeSimple: fadeSimple 0.25s ease-out forwards;
+}
+
+/* Global Dark Theme Fallbacks for existing component markup */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #0b0f19 !important; /* Rich deep body backplate */
+  color: #f1f5f9 !important;
+}
+
+.dark main {
+  background-color: #0b0f19 !important;
+}
+
+.dark .bg-slate-50,
+.dark .bg-gray-50 {
+  background-color: #0b0f19 !important;
+}
+
+.dark .bg-white {
+  background-color: #111827 !important; /* bg-slate-900 / dark zinc base card */
+  border-color: #1f2937 !important; /* border-slate-800 */
+}
+
+.dark .text-slate-800,
+.dark .text-slate-900,
+.dark .text-gray-800,
+.dark .text-gray-900 {
+  color: #f8fafc !important; /* slate-50 high contrast text */
+}
+
+.dark .text-slate-700,
+.dark .text-slate-600,
+.dark .text-gray-700,
+.dark .text-gray-600 {
+  color: #cbd5e1 !important; /* slate-300 readable narrative text */
+}
+
+.dark .text-slate-500,
+.dark .text-slate-400,
+.dark .text-gray-500 {
+  color: #94a3b8 !important; /* slate-400 mute descriptors */
+}
+
+.dark .border-slate-100,
+.dark .border-slate-200,
+.dark .border-slate-200\/80,
+.dark .border-gray-100,
+.dark .border-gray-200 {
+  border-color: #1f2937 !important; /* border-slate-800 deep borders */
+}
+
+.dark .divide-slate-200 > :not([hidden]) ~ :not([hidden]) {
+  border-color: #1f2937 !important;
+}
+
+.dark input, 
+.dark select, 
+.dark textarea {
+  background-color: #171f30 !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+}
+
+.dark input::placeholder,
+.dark textarea::placeholder {
+  color: #64748b !important;
+}
+
+.dark .bg-indigo-50,
+.dark .bg-violet-50 {
+  background-color: rgba(99, 102, 241, 0.1) !important;
+}
+
+.dark .bg-emerald-50 {
+  background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.dark .bg-rose-50 {
+  background-color: rgba(244, 63, 94, 0.08) !important;
+}
+
+.dark .bg-amber-50 {
+  background-color: rgba(245, 158, 11, 0.08) !important;
+}
+
+.dark .bg-slate-100 {
+  background-color: #1f2937 !important;
+}
+
+/* Tab viewport corrections in dark mode */
+.dark .tab-viewport .bg-white {
+  background-color: #111827 !important;
+}
+
+/* Force dark theme table headers backgrounds and colors */
+.dark thead,
+.dark thead tr,
+.dark tr.bg-slate-50\/75,
+.dark tr.bg-slate-50\/40,
+.dark tr.bg-gray-50,
+.dark th {
+  background-color: #171f30 !important;
+  color: #94a3b8 !important;
+  border-bottom-color: #1f2937 !important;
+}
+
+/* Chart axis and grids colors in dark mode */
+.dark .recharts-cartesian-grid-horizontal line,
+.dark .recharts-cartesian-grid-vertical line {
+  stroke: #1f2937 !important;
+}
+
+.dark .recharts-text {
+  fill: #94a3b8 !important;
+}
+
+.dark .recharts-legend-item-text {
+  color: #94a3b8 !important;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSimple {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Custom modern scroll bar stylings */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 
+  Print Styling Guidelines
+  Forces clean vector white paper layouts, hiding dashboards rails, headers, buttons and warning panels, 
+  letting user save a crisp professional financial statement directly as a PDF!
+*/
+@media print {
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11px !important;
+  }
+  
+  /* Hide all actions, headers, triggers, footers and tabs */
+  .no-print, 
+  header, 
+  footer, 
+  .flex.border-b, 
+  button, 
+  input, 
+  select,
+  .no-print * {
+    display: none !important;
+  }
+
+  /* Make containers use full printed width */
+  main, 
+  .printable-section, 
+  table {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+
+  /* Keep table borders visible but dark */
+  table {
+    border-collapse: collapse !important;
+  }
+  th, td {
+    border-bottom: 1px solid #e2e8f0 !important;
+    color: #1e293b !important;
+    padding: 8px 12px !important;
+  }
+  
+  /* Make sure background fills rendering is forced on printing output */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+}
